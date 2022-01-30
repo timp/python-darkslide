@@ -4,7 +4,7 @@ Authors
 Maintainer
 ----------
 
-Ionel Cristian Mărieș 
+Ionel Cristian Mărieș
 
 History
 -------

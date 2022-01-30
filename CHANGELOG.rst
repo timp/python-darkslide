@@ -2,6 +2,8 @@
 Changelog
 =========
 
+* Added ``theme_mods`` support to config file
+
 Darkslide v6.0.0 (2020-07-24)
 =============================
 

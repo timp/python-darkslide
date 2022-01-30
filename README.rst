@@ -498,5 +498,3 @@ Styles Scope
 -  To change HTML5 presentation styles, tweak the ``css/screen.css``
    stylesheet bundled with the theme you are using
 -  For printing, modify the ``css/print.css``
-
-.. include:: ./AUTHORS.rst
