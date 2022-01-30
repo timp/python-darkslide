@@ -95,7 +95,7 @@ class Generator(object):
             self.extensions = config.get('extensions', self.extensions)
             self.maxtoclevel = config.get('max-toc-level', self.maxtoclevel)
             self.theme = config.get('theme', self.theme)
-            self.theme_mod = config.get('theme_mod', self.theme_mod)
+            self.theme_mods = config.get('theme_mods', self.theme_mods)
             self.destination_dir = os.path.dirname(self.destination_file)
             self.user_css = config.get('css', [])
             self.user_js = config.get('js', [])
@@ -434,8 +434,6 @@ class Generator(object):
         if raw_config.has_option(section_name, 'theme'):
             config['theme'] = raw_config.get(section_name, 'theme')
             self.log(u"Using configured theme: %s" % config['theme'])
-        if raw_config.has_option(section_name, 'theme_mod'):
-            config['theme_mod'] = raw_config.get(section_name, 'theme_mod')
         if raw_config.has_option(section_name, 'destination'):
             config['destination'] = raw_config.get(section_name, 'destination')
         if raw_config.has_option(section_name, 'linenos'):
@@ -447,10 +445,9 @@ class Generator(object):
                 config[boolopt] = raw_config.getboolean(section_name, boolopt)
         if raw_config.has_option(section_name, 'extensions'):
             config['extensions'] = ",".join(raw_config.get(section_name, 'extensions').replace('\r', '').split('\n'))
-        if raw_config.has_option(section_name, 'css'):
-            config['css'] = raw_config.get(section_name, 'css').replace('\r', '').split('\n')
-        if raw_config.has_option(section_name, 'js'):
-            config['js'] = raw_config.get(section_name, 'js').replace('\r', '').split('\n')
+        for listopt in ('theme_mods', 'css', 'js'):
+            if raw_config.has_option(section_name, listopt):
+                config[listopt] = raw_config.get(section_name, listopt).replace('\r', '').split('\n')
         return config
 
     def process_macros(self, content, source, context):

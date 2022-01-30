@@ -108,6 +108,22 @@ def test_weird_filename():
     # check that the file was properly encoded in utf_8
     assert u'țară' in file_contents
 
+def test_config():
+    path = os.path.join(DATA_DIR, 'full.cfg')
+    g = Generator(path)
+
+    assert g.source == ['source1', 'source2']
+    assert g.destination_file == 'config_destination'
+    assert g.embed
+    assert g.relative
+    assert g.extensions == 'ext1,ext2'
+    assert g.maxtoclevel == 100
+    assert g.theme == 'abyss'
+    assert g.theme_mods == ['wide16x9']
+    assert g.user_css == ['config_user_css']
+    assert g.user_js == ['config_user_js']
+    assert g.linenos == 'table'
+
 
 def test_get_template_vars():
     g = Generator(os.path.join(DATA_DIR, 'test.md'))
